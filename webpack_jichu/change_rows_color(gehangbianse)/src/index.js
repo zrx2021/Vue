@@ -5,7 +5,7 @@ import $ from 'jquery'
 //2.定义 jQuery 的入口函数
 
 $(function () {
-    // 3.实现奇偶行变色
+    // 3.实现奇偶行变色，0是偶数，odd奇数选择器，even偶数选择器
     $('li:odd').css('background', 'red')
     $('li:even').css('background', 'pink')
 })
