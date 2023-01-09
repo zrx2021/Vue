@@ -35,4 +35,5 @@ function info(target){
 @info
 class Person{}
 
-console.log(Person.info)
+//故意写错的代码，配置后，测试报错行号与源代码行号是否一致
+consle.log(Person.info)

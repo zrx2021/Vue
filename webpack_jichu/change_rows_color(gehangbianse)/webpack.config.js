@@ -10,13 +10,17 @@ const htmlPlugin = new HtmlPlugin({
     filename: './index.html'
 })
 
-//注意，左侧的{}符合是解构赋值
+//注意，左侧的{}符号是解构赋值
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // 使用Node.js中的导出语法，向外导出一个 webpack的配置对象
 module.exports = {
     //代表 webpack 运行的模式，可选值有 development 和 production
     mode: 'development',
+    //在开发调试阶段，建议把devtool的值设置为eval-source-map
+    // devtool: 'eval-source-map',
+    //在实际发布的时候，建议设为如下，或者直接关闭Source Map
+    devtool: 'nosources-source-map',
     //entry：指定要处理哪个文件
     //__dirname代表当前文件的存放路径
     entry: path.join(__dirname, './src/index.js'),
