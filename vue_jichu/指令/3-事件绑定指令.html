@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="counter">
+        <h1>count的值是：{{ count }}</h1>
+        <!-- 为button绑定点击事件，无需操作dom -->
+        <!-- 能使用()为事件绑定的函数传参 -->
+        <button v-on:click="add(1)">+1</button>
+        <!-- v-on:能够简写成@ -->
+        <button @click="sub">-1</button>
+    </div>
+    <script src="../lib/vue-2.6.12.js"></script>
+    <script>
+        const vueObj = new Vue({
+            el: '#counter',
+            data: {
+                count: 0,
+            },
+            methods: {
+                add: function (n) {
+                    console.log('触发事件成功调用add方法')
+                    //不推荐使用实例对象修改数值，推荐用this
+                    // console.log(vm === this)
+                    // vueObj.count += 1
+                    this.count += n
+                },
+                //ES6定义函数简写
+                sub() {
+                    console.log('触发事件成功调用sub方法')
+                    this.count -= 1
+                }
+            }
+        })
+    </script>
+</body>
+</html>

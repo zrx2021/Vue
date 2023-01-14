@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="xsf">
+        <!-- 在点击a标签后，先阻止页面跳转，然后触发点击事件，再调用函数 -->
+        <a href="http://www.baidu.com">点击跳转到百度</a>
+        <a href="http://www.baidu.com" @click.prevent="func0">点击链接并阻止跳转</a>
+        <hr>
+        <div style="height: 150px; background-color: black; padding-left: 150px; line-height: 150px;" @click="func1()">
+            <button @click="func2()">按钮</button>
+        </div>
+
+        <hr>
+        <div style="height: 150px; background-color: yellow; padding-left: 150px; line-height: 150px;" @click="func1()">
+            <button @click.stop="func2()">按钮</button>
+        </div>
+
+    </div>
+    <script src="../lib/vue-2.6.12.js"></script>
+    <script>
+        const vueObj = new Vue({
+            el: '#xsf',
+            data: {
+
+            },
+            methods: {
+                func0(){
+                    console.log('点击了链接，但是阻止了跳转')
+                },
+                func1(){
+                    console.log('点击了div框')
+                },
+                func2(){
+                    console.log('点击了按钮')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

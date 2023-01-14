@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="showcontent">
+        <input type="text" placeholder="xxx">
+        <!-- 错误用法 -->
+        <!-- <input type="text" placeholder="tips">
+        <input type="text" placeholder="{{ tips }}"> -->
+        <hr>
+        <!-- v-bind用法 -->
+        <input type="text" v-bind:placeholder="tips">
+        <img v-bind:src="photo">
+        <!-- 简写 -->
+        <input type="text" :placeholder="tips">
+        <hr>
+        <div :title="'box' + index">这是一个div请用鼠标在此悬浮查看title</div>
+    </div>
+    <script src="../lib/vue-2.6.12.js"></script>
+    <script>
+        const vm = new Vue({
+            el:'#showcontent',
+            data: {
+                tips: '请输入用户名',
+                photo: '../图片/logo.jpg',
+                index: 666
+            }
+        })
+    </script>
+</body>
+</html>

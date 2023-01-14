@@ -1,4 +1,9 @@
 package-lock.json
+*.rar
+*.zip
+*7z
+/day[0-9]*/
+
 # Logs
 logs
 *.log
