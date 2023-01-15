@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(date, index) in dates" :v-key="date.id">{{ date.date | dateFormat}}</li>
+        </ul>
+    </div>
+    <!-- 只要导入了dayjs的库文件，在window全局，就可以使用dayjs()方法了 -->
+    <script src="../lib/dayjs.min.js"></script>
+    <script src="../lib/vue-2.6.12.js"></script>
+    <script>
+        Vue.filter('dateFormat', function(time) {
+            //对时间进行格式化处理，得到 YYYY-MM-DD HH:mm:ss
+            //把格式化的结果，return出去
+            //直接调用dayjs()得到的是当前的时间
+            //dayjs(给定的日期时间)得到指定的日期
+            const formatedDate = dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+            return formatedDate
+        })
+        const vueObj = new Vue({
+            el: '#app',
+            data: {
+                dates: [
+                    {id: 1, date: new Date()},
+                    {id: 2, date: new Date()},
+                    {id: 3, date: new Date()},
+                    {id: 4, date: new Date()},
+                    {id: 5, date: new Date()}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

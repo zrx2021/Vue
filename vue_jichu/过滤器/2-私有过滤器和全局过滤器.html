@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="glq">
+        <!-- 把第一个字符转成大写 -->
+        <p>message的值是：{{ message | capi }}</p>
+    </div>
+    <hr>
+    <div id="app2">
+        <p>message2的值是：{{ message | capi }}</p>
+    </div>
+    <script src="../lib/vue-2.6.12.js"></script>
+    <script>
+        //定义全局过滤器
+        Vue.filter('capi', function (str){
+            const first = str.charAt(0).toUpperCase()
+            const other = str.slice(1)
+            return first + other + '这是全局过滤器'
+        })
+        const vue = new Vue({
+            el: '#glq',
+            data: {
+                message: 'hello vue.js'
+            },
+            filters: {
+                //过滤器，需要定义一个函数并且需要返回值
+                //函数的形参是“管道符”前的值
+                capi(val) {
+                    // console.log(val.charAt(0))
+                    // console.log(val)
+                    //第一个字符转大写
+                    const first = val.charAt(0).toUpperCase()
+                    //字符串的slice方法，可以截取字符串
+                    const other = val.slice(1)
+                    return first + other
+                }
+            }
+        })
+
+        const vue2 = new Vue({
+            el: '#app2',
+            data: {
+                message: 'secondary words'
+            }
+        })
+    </script>
+</body>
+</html>
