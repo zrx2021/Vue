@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="sxsjbd">
+        <p>用户的名字是：{{ username }}</p>
+        <input type="text" v-model="username">
+        <hr>
+        <input type="text" :value="username">
+        <hr>
+        <select v-model="province">
+            <option value="">请选择</option>
+            <option value="1">北京</option>
+            <option value="2">河北</option>
+            <option value="3">黑龙江</option>
+        </select>
+    </div>
+    <script src="../lib/vue-2.6.12.js"></script>
+    <script>
+        const vueObj = new Vue({
+            el: '#sxsjbd',
+            data: {
+                username: 'zhangsan',
+                province: ''
+            }
+        })
+    </script>
+</body>
+</html>

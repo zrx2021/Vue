@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="vmxsf">
+        <p>请输入数字</p>
+        <input type="text" v-model="n1"> + <input type="text" v-model="n2"> = <span>{{ n1 + n2 }}</span>
+        <hr>
+        <input type="text" v-model.number="n3"> + <input type="text" v-model.number="n4"> = <span>{{ n3 + n4 }}</span>
+        <hr>
+        <p>请尝试在如下两个输入框内输入空格</p>
+        <input type="text" v-model="username1">
+        <br>
+        <input type="text" v-model.trim="username2">
+        <button @click="showName()">获取用户名</button>
+        <hr>
+        <input type="text" v-model.lazy="text">
+        {{ text }}
+    </div>
+    <script src="../lib/vue-2.6.12.js"></script>
+    <script>
+        const vueObj = new Vue({
+            el: '#vmxsf',
+            data: {
+                username1: 'zhangsan',
+                username2: 'lisi',
+                n1: 1,
+                n2: 2,
+                n3: 1,
+                n4: 2,
+                text: '请输入文字'
+            },
+            methods: {
+                showName() {
+                    console.log(`用户名是："${this.username1}"`)
+                    console.log(`用户名是："${this.username2}"`)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
