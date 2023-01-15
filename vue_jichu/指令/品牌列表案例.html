@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品牌列表案例</title>
+  <link rel="stylesheet" href="../lib/bootstrap.css">
+  <link rel="stylesheet" href="../lib/bootstrap.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- 卡片区域 -->
+    <div class="card">
+      <div class="card-header">
+        添加品牌
+      </div>
+      <div class="card-body">
+        <!-- 添加品牌的表单区域 -->
+        <form>
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">品牌名称</div>
+                </div>
+                <input type="text" class="form-control" placeholder="请输入品牌名称" v-model.trim="inputBrand">
+              </div>
+            </div>
+            <div class="col-auto">
+              <button type="submit" @click.prevent="add()" class="btn btn-primary mb-2">添加</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 表格区域 -->
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">品牌名称</th>
+          <th scope="col">状态</th>
+          <th scope="col">创建时间</th>
+          <th scope="col">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in brands" :key="item.id">
+          <td>{{ index }}</td>
+          <td>{{ item.brand }}</td>
+          <td>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" :id="'customSwitch' + item.id" v-model="item.status">
+              <!-- 这里label标签的for适用于提升用户体验的功能，与input的id绑定，当点击label的文字后能够同时触发复选框 -->
+              <label class="custom-control-label" :for="'customSwitch' + item.id" v-if="item.status">已禁用</label>
+              <label class="custom-control-label" :for="'customSwitch' + item.id" v-else>已启用</label>
+            </div>
+          </td>
+          <td>{{ item.date }}</td>
+          <td>
+            <a href="javascript:;" @click="remove(item.id)">删除</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="../lib/vue-2.6.12.js"></script>
+  <script>
+    const vueObj = new Vue({
+      el: '#app',
+      data: {
+        inputBrand: '',
+        nextId: 5,
+        brands: [
+          {id: 1, brand: '宝马', status: true, date: new Date()},
+          {id: 2, brand: '奔驰', status: false, date: new Date()},
+          {id: 3, brand: '丰田', status: true, date: new Date()},
+          {id: 4, brand: '长安', status: false, date: new Date()}
+        ]
+      },
+      methods: {
+        remove(id){
+          this.brands = this.brands.filter(brands => id !== brands.id)
+        },
+        add(){
+          if(this.inputBrand === ''){
+            return alert('请输入内容')
+          }
+          const newBrand = {
+            id: this.nextId,
+            brand: this.inputBrand,
+            status: true,
+            date: new Date()
+          }
+          this.brands.push(newBrand)
+          this.nextId += 1
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
